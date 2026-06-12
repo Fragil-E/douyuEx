@@ -35,7 +35,7 @@ function Refresh_Video_insertIcon() {
                 <div id="ex-refresh-switch-circle" style="width:10px;height:10px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px;transition:left 0.3s, background 0.3s;"></div>
             </div>
         </div>`;
-        a.style = "position:absolute;right:18px;bottom:58px;padding:0 10px;height:28px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);color:#fff;z-index:9999;cursor:pointer;user-select:none;opacity:0;transform:scale(.9);transition:opacity .15s ease,transform .15s ease,background-color .15s ease,box-shadow .3s ease;pointer-events:none;";
+        a.style = "position:absolute;left:18px;bottom:58px;padding:0 10px;height:28px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);color:#fff;z-index:9999;cursor:pointer;user-select:none;opacity:0;transform:scale(.9);transition:opacity .15s ease,transform .15s ease,background-color .15s ease,box-shadow .3s ease;pointer-events:none;";
         b = document.getElementById("js-player-dialog");
         if (b) b.insertBefore(a, b.childNodes[0]);
     }
@@ -141,6 +141,9 @@ function initPkg_Refresh_Video_Func() {
 
         if (dom_toolbar.style.visibility == "hidden") {
             dom_toolbar.style.visibility = "visible";
+            if (typeof ExPanel_onGiftBarShow === "function") {
+                ExPanel_onGiftBarShow();
+            }
             dom_video.style = "";
             if (dom_refresh3) {
                 dom_refresh3.style.opacity = "0";
@@ -153,6 +156,9 @@ function initPkg_Refresh_Video_Func() {
             refresh_Video_removeStyle();
         } else {
             dom_toolbar.style.visibility = "hidden";
+            if (typeof ExPanel_onGiftBarHide === "function") {
+                ExPanel_onGiftBarHide();
+            }
             dom_video.style = "bottom:0;z-index:25";
             dom_refresh.innerText = "✓ 隐藏礼物栏";
             if (dom_refresh3) dom_refresh3.title = "点击显示礼物栏";
